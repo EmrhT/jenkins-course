@@ -13,9 +13,11 @@ pipeline {
 
     stage('build') {
       steps {
-        script {
-          myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-            sh 'cd complete && /opt/gradle/bin/gradle build'
+        node ('sonar') {
+          script {
+            myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+              sh 'cd complete && /opt/gradle/bin/gradle build'
+            }
           }       
         }
       }
