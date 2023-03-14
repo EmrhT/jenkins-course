@@ -13,7 +13,7 @@ pipeline {
 
     stage('build') {
       steps {
-        node ('sonar') {
+        node ('gradle') {
           script {
               sh 'cd complete && /opt/gradle/bin/gradle build'
             }
