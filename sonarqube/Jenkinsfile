@@ -1,7 +1,10 @@
-node {
-    def myGradleContainer = docker.image('gradle:jdk8-alpine')
-    myGradleContainer.pull()
-
+pipeline {
+  agent {
+    node {
+      label 'kubeagent'
+    }
+  }
+  stages {
     stage('prep') {
         git url: 'https://github.com/wardviaene/gs-gradle.git'
     }
@@ -18,4 +21,5 @@ node {
         sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=gs-gradle -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=GS -Dsonar.sources=complete/src/main/ -Dsonar.tests=complete/src/test/ -Dsonar.language=java -Dsonar.java.binaries=."
       }
     }
+  }
 }
