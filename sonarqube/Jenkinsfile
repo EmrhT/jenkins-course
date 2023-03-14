@@ -14,7 +14,6 @@ pipeline {
     stage('build') {
       steps {
         script {
-            sh 'sleep 99999'
             sh 'cd complete && gradle build'
           }
         }
