@@ -13,11 +13,9 @@ pipeline {
 
     stage('build') {
       steps {
-        node ('gradle') {
-          script {
-              sh 'cd complete && /opt/gradle/bin/gradle build'
-            }
-          }       
+        script {
+            sh 'cd complete && /opt/gradle/bin/gradle build'
+          }
         }
       }
 
