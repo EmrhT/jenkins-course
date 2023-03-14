@@ -15,7 +15,7 @@ pipeline {
       steps {
         script {
             sh 'sleep 99999'
-            sh 'cd complete && /opt/gradle/bin/gradle build'
+            sh 'cd complete && gradle build'
           }
         }
       }
